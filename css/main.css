@@ -1,0 +1,75 @@
+/*Main Site*/
+body {
+	background-color: #eff7f6;
+}
+
+/*Header*/
+.nms-menu {
+	background-color: white;
+	align-content: center;
+}
+
+/*Circuit Selection*/
+.circuit-selection {
+	padding: 20px;
+	padding-top: 60px;
+	align-content: center;
+}
+
+.company-input, .circuit-input {
+	position: relative;
+	height: auto;
+}
+
+.circuit-input-prepend {
+	position: absolute;
+	width: 40%;
+}
+
+.custom-select.circuit-select{
+	position: absolute;
+	width: 60%;
+	left: 40%;
+	border-radius: 0 0.25rem 0.25rem 0;
+}
+
+/*Email Template*/
+.custoner-component {
+	cursor: default;
+	padding: 100px 40px 0 40px;
+	text-align: center;
+}
+
+.type-button {
+	border-radius: 7px 7px 0px 0px;
+}
+
+.type-button:hover {
+	background-color: #4B958E;
+	color: #F1FFFA;
+}
+
+.type-button.active {
+	background-color: #4B958E;
+	color: #F1FFFA;
+}
+
+.type-button::selection {
+  color: none;
+  background: none;
+}
+
+.type-button::-moz-selection {
+  color: none;
+  background: none;
+}
+
+.type-button h4 {
+  font-size: 1.15rem;
+  padding-top: 10px;
+}
+
+.email-content{
+	background-color: #4B958E;
+	padding: 100px 0;
+}
