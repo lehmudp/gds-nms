@@ -1,0 +1,16 @@
+{ 
+    "circuit": {
+        "Acecook": [
+            {"line1":"Line Name - VNPT"},
+            {"line2":"Line Name - FPT"},
+            {"line3":"Line Name - Viettel"}
+        ],
+        "Boramtek": [
+            {"line1":"Line Name - CMC"}
+        ],
+        "Uniqlo": [
+            {"line1":"Line Name - Viettel"},
+            {"line2":"Line Name - NetNam"},
+        ]
+    }
+}

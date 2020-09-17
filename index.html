@@ -3,16 +3,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>GDS No More Sin</title>
+	<title>GDS Notification</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap -->
 		<!-- CSS only -->
 		<link rel="stylesheet" type="text/css" href="./css/main.css">
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.css" integrity="sha512-63+XcK3ZAZFBhAVZ4irKWe9eorFG0qYsy2CaM5Z+F3kUn76ukznN0cp4SArgItSbDFD1RrrWgVMBY9C/2ZoURA==" crossorigin="anonymous" />
+		
 		<!-- JS, Popper.js, and jQuery -->
 		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
 		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js" integrity="sha512-GDey37RZAxFkpFeJorEUwNoIbkTwsyC736KNSYucu1WJWFK9qTdzYub8ATxktr6Dwke7nbFaioypzbDOQykoRg==" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 	<!-- VueJS -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   	<!-- Script Components -->
@@ -23,10 +27,11 @@
 <!-- Start Container -->
 	<!-- Header Menu -->
 	<div class="row nms-menu">
-		<div class="col-md-3 logo">
-			 <img src="./assets/gds1.png" style="max-width:60%; height: auto" />
+		<div class="col-md-3">
+			 <img class="logo" src="./assets/gds.png"/>
 		</div>
-		<div class="col-md-9"></div>
+		<div class="col-md-3 offset-md-1 menu-item">Carriers</div>
+		<div class="col-md-3 offset-md-1 menu-item">NTT</div>
 	</div>
 
 	<!-- Page Content -->
@@ -35,22 +40,22 @@
 		  <div class="circuit-input-prepend">
 		    <label class="input-group-text" for="company-name">Company Name</label>
 		  </div>
-		  <select class="custom-select circuit-select" id="company-name">
-		    <option selected>Choose...</option>
-		    <option value="1">One</option>
-		    <option value="2">Two</option>
-		    <option value="3">Three</option>
+		  <select class="custom-select circuit-select" id="company-name" v-model="companyName" @change="companySelected()">
+		    <option selected v-bind:value="''">Choose...</option>
+		    <option 
+		    v-for="(company,key) in circuits"
+		    v-bind:value="key"
+		    >
+		    {{key}}
+		    </option>
 		  </select>
 		</div>
 		<div class="circuit-input col-md-6">
 		  <div class="circuit-input-prepend">
 		    <label class="input-group-text" for="circuit-name">Circuit Name</label>
 		  </div>
-		  <select class="custom-select circuit-select" id="circuit-name">
-		    <option selected>Choose...</option>
-		    <option value="1">One</option>
-		    <option value="2">Two</option>
-		    <option value="3">Three</option>
+		  <select class="custom-select circuit-select" id="circuit-name" v-model="circuitName">
+		    <option v-for="(circuit,value) in circuitList" v-bind:value="circuit.Line">{{circuit.Line}}</option>
 		  </select>
 		</div>
 	</div>
@@ -63,7 +68,57 @@
 	    v-on:click="currentType = type"
 		><h4>{{ type }}</h4></div>
 		<div class="col-md-12 email-content">
-			<component v-bind:is="currentTypeComponent" class="type"></component>
+			<form>
+			  <div class="form-group">
+			  	<div class="col-md-4 offset-md-4">
+			  		<label class="float-left font-weight-light" for="form-number">Company</label>
+			    	<input type="text" v-model="companyName" class="form-control" id="form-number" readonly>
+			  	</div>
+			  </div>
+			  <div class="form-group">
+			  	<div class="col-md-4 offset-md-4">
+				    <label class="float-left font-weight-light" for="form-ticket">Trouble Ticket Number</label>
+				    <input type="text" class="form-control" id="form-ticket">
+			  	</div>
+			  </div>
+			  <div class="form-group">
+			  	<div class="col-md-4 offset-md-4">
+				    <label class="float-left font-weight-light" for="form-circuit">Affected Circuit</label>
+				    <input type="text" v-model="circuitName" class="form-control" id="form-circuit" readonly>
+			  	</div>
+			  </div>
+			  <!-- <div class="form-group">
+			  	<div class="col-md-4 offset-md-4">
+				    <label class="float-left font-weight-light" for="form-start-time">Start Time</label>
+				    <div class='input-group date' id='datetimepicker1'>
+                        <input type='text' class="form-control" />
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </span>
+                    </div>
+			  	</div>
+			  </div> -->
+			    <div class="form-group" v-if="recovered">
+				  	<div class="col-md-4 offset-md-4">
+					    <label class="float-left font-weight-light" for="form-status">Current Status</label>
+					    <textarea  type="text" class="form-control" id="form-status" rows="3">Down</textarea>
+				    </div>
+			    </div>
+			    <div class="form-group">
+				  	<div class="col-md-4 offset-md-4">
+					    <label class="float-left font-weight-light" for="form-action">Current Action</label>
+					    <textarea  type="text" class="form-control" v-model="actionText" id="form-action" rows="3">
+						</textarea>
+				    </div>
+				</div>
+			    <div class="form-group">
+				  	<div class="col-md-4 offset-md-4">
+					    <label class="float-left font-weight-light" for="form-reason">Reason for Outage</label>
+					    <textarea  type="text" class="form-control" v-model="reasonText" id="form-reason" rows="3"></textarea>
+			    	</div>
+			    </div>
+			  <div class="form-group"><button type="submit" class="btn btn-primary">Compose Email</button></div>
+			</form>
 		</div>
 	</div>
 <!-- End Container -->

@@ -9,6 +9,16 @@ body {
 	align-content: center;
 }
 
+.logo{
+	max-width:60%; 
+	height: auto;
+}
+
+.menu-item{
+	line-height: 110px;	
+	cursor: default;
+}
+
 /*Circuit Selection*/
 .circuit-selection {
 	padding: 20px;
@@ -45,12 +55,12 @@ body {
 }
 
 .type-button:hover {
-	background-color: #4B958E;
+	background-color: #DFCCB9;
 	color: #F1FFFA;
 }
 
 .type-button.active {
-	background-color: #4B958E;
+	background-color: #DFCCB9;
 	color: #F1FFFA;
 }
 
@@ -70,6 +80,6 @@ body {
 }
 
 .email-content{
-	background-color: #4B958E;
+	background-color: #DFCCB9;
 	padding: 100px 0;
 }
