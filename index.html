@@ -37,26 +37,25 @@
 	<!-- Page Content -->
 	<div class="row circuit-selection">
 		<div class="company-input col-md-4 offset-md-1">
-		  <div class="circuit-input-prepend">
-		    <label class="input-group-text" for="company-name">Company Name</label>
-		  </div>
-		  <select class="custom-select circuit-select" id="company-name" v-model="companyName" @change="companySelected()">
+		  	<div class="circuit-input-prepend">
+		    	<label class="input-group-text" for="company-name">Company Name</label>
+		  	</div>
+		  	<select class="custom-select circuit-select" id="company-name" v-model="formData.companyName" @change="companySelected()">
 		    <option selected v-bind:value="''">Choose...</option>
 		    <option 
 		    v-for="(company,key) in circuits"
-		    v-bind:value="key"
-		    >
+		    v-bind:value="key">
 		    {{key}}
 		    </option>
 		  </select>
 		</div>
 		<div class="circuit-input col-md-6">
-		  <div class="circuit-input-prepend">
-		    <label class="input-group-text" for="circuit-name">Circuit Name</label>
-		  </div>
-		  <select class="custom-select circuit-select" id="circuit-name" v-model="circuitName">
-		    <option v-for="(circuit,value) in circuitList" v-bind:value="circuit.Line">{{circuit.Line}}</option>
-		  </select>
+		  	<div class="circuit-input-prepend">
+		    	<label class="input-group-text" for="circuit-name">Circuit Name</label>
+		  	</div>
+		  	<select class="custom-select circuit-select" id="circuit-name" v-model="formData.circuitName">
+		    	<option v-for="(circuit,value) in circuitList" v-bind:value="circuit.Line">{{circuit.Line}}</option>
+		  	</select>
 		</div>
 	</div>
 
@@ -69,24 +68,24 @@
 		><h4>{{ type }}</h4></div>
 		<div class="col-md-12 email-content">
 			<form>
-			  <div class="form-group">
-			  	<div class="col-md-4 offset-md-4">
-			  		<label class="float-left font-weight-light" for="form-number">Company</label>
-			    	<input type="text" v-model="companyName" class="form-control" id="form-number" readonly>
-			  	</div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-md-4 offset-md-4">
-				    <label class="float-left font-weight-light" for="form-ticket">Trouble Ticket Number</label>
-				    <input type="text" class="form-control" id="form-ticket">
-			  	</div>
-			  </div>
-			  <div class="form-group">
-			  	<div class="col-md-4 offset-md-4">
-				    <label class="float-left font-weight-light" for="form-circuit">Affected Circuit</label>
-				    <input type="text" v-model="circuitName" class="form-control" id="form-circuit" readonly>
-			  	</div>
-			  </div>
+				<div class="form-group">
+				  	<div class="col-md-4 offset-md-4">
+				  		<label class="float-left font-weight-light" for="form-number">Company</label>
+				    	<input type="text" v-model="formData.companyName" class="form-control" id="form-number" readonly>
+				  	</div>
+				</div>
+				<div class="form-group">
+				  	<div class="col-md-4 offset-md-4">
+					    <label class="float-left font-weight-light" for="form-ticket">Trouble Ticket Number</label>
+					    <input type="text" v-model="formData.ticketNumber" class="form-control" id="form-ticket">
+				  	</div>
+				</div>
+				<div class="form-group">
+				  	<div class="col-md-4 offset-md-4">
+					    <label class="float-left font-weight-light" for="form-circuit">Affected Circuit</label>
+					    <input type="text" v-model="formData.circuitName" class="form-control" id="form-circuit" readonly>
+				  	</div>
+				</div>
 			  <!-- <div class="form-group">
 			  	<div class="col-md-4 offset-md-4">
 				    <label class="float-left font-weight-light" for="form-start-time">Start Time</label>
@@ -101,23 +100,23 @@
 			    <div class="form-group" v-if="recovered">
 				  	<div class="col-md-4 offset-md-4">
 					    <label class="float-left font-weight-light" for="form-status">Current Status</label>
-					    <textarea  type="text" class="form-control" id="form-status" rows="3">Down</textarea>
+					    <textarea  type="text" v-model="formData.status" class="form-control" id="form-status" rows="3">Down</textarea>
 				    </div>
 			    </div>
 			    <div class="form-group">
 				  	<div class="col-md-4 offset-md-4">
 					    <label class="float-left font-weight-light" for="form-action">Current Action</label>
-					    <textarea  type="text" class="form-control" v-model="actionText" id="form-action" rows="3">
+					    <textarea  type="text" v-model="actionTextComputed" class="form-control" id="form-action" rows="3">
 						</textarea>
 				    </div>
 				</div>
 			    <div class="form-group">
 				  	<div class="col-md-4 offset-md-4">
 					    <label class="float-left font-weight-light" for="form-reason">Reason for Outage</label>
-					    <textarea  type="text" class="form-control" v-model="reasonText" id="form-reason" rows="3"></textarea>
+					    <textarea  type="text" v-model="reasonTextComputed" class="form-control" id="form-reason" rows="3"></textarea>
 			    	</div>
 			    </div>
-			  <div class="form-group"><button type="submit" class="btn btn-primary">Compose Email</button></div>
+			  	<div class="form-group"><button type="button" v-on:click="compose()" class="btn btn-primary">Compose Email</button></div>
 			</form>
 		</div>
 	</div>

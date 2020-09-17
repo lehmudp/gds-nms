@@ -23,38 +23,43 @@ window.onload = function () {
 	    currentType: 'Occurance',
 	    types: ['Occurance', 'Status', 'Recovery', 'RFO'],
 	    circuits: circuitData.circuit,
-	    companyName: '',
 	    circuitList: [],
-	    circuitName: '',
+	    formData: {
+	    	companyName: '',
+	    	ticketNumber: '',
+	    	circuitName: '',
+	    	status: 'Down',
+	    	actionText: '',
+	    	reasonText: '',
+	    }
 	  },
 	  computed: {
-	    actionText: function () {
-	    	if (this.currentType === 'Occurance') {
-	        	return 'Now Investigating'
-	    	}
-	    	else {
-	    		return "-	List task which is done\n-	List task which is doing\n-	List task which will do (if possible)"
-	    	}
+	    // Default value for "Current Action" field
+		actionTextComputed: function () {
+	    	return this.currentType === 'Occurance' ? 'Now Investigating' : "-	List task which is done\n-	List task which is doing\n-	List task which will do (if possible)"
 	    },
-	    reasonText: function () {
-	    	if (this.currentType === 'RFO') {
-	        	return 'Detail of reason'
-	    	}
-	    	else {
-	    		return "Under investigation"
-	    	}
+	    // Default value for "Reason for Outage" field
+	    reasonTextComputed: function () {
+	    	return this.currentType === 'RFO' ? 'Detail of reason' : "Under investigation";
 	    },
+	    // Check circuit status tab to hide elements, returns true if circuit is Down 
 	    recovered: function () {
 	    	return this.currentType === 'Occurance' || this.currentType === 'Status';
 	    }
 	  },
 	  methods: {
-	  	companySelected: function () {
-	  		if (this.companyName == '') {
-	  			this.circuitName = '';
+	  	// Display drop down list for circuits once a company is selected
+	  	companySelected: function() {
+	  		if (this.formData.companyName == '') {
+	  			this.formData.circuitName = '';
 	  			this.circuitList = [];
 	  		} 
-	  		else this.circuitList = this.circuits[this.companyName];
+	  		else this.circuitList = this.circuits[this.formData.companyName];
+	  	},
+	  	compose: function() {
+	  		this.formData.actionText = this.actionTextComputed;
+	  		this.formData.reasonText = this.reasonTextComputed;
+	  		console.log(this.formData);
 	  	},
 	  },
 	})
