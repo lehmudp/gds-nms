@@ -7,13 +7,13 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<!-- Bootstrap -->
 	<!-- CSS only -->
-	<link rel="stylesheet" type="text/css" href="./css/main.css">
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-	
+	<link rel="stylesheet" type="text/css" href="./css/main.css">
+
 	<!-- JS, Popper.js, and jQuery -->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.0/moment.min.js"></script>
 	<!-- VueJS -->
 	<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -21,106 +21,135 @@
   	<script src="./js/main-script.js"></script>
 </head>
 <body>
-<div class="container-fluid" id="app">
-<!-- Start Container -->
-	<!-- Header Menu -->
-	<div class="row nms-menu">
-		<div class="col-md-3">
-			 <img class="logo" src="./assets/gds.png"/>
+	<div class="container-fluid" id="app">
+	<!-- Start Container -->
+		<!-- Header Menu -->
+		<div class="row nms-menu">
+			<div class="col-md-3">
+				 <img class="logo" src="./assets/gds.png"/>
+			</div>
+			<div class="col-md-3 offset-md-1 menu-item unselectable-text">Carriers</div>
+			<div class="col-md-3 offset-md-1 menu-item unselectable-text">NTT</div>
 		</div>
-		<div class="col-md-3 offset-md-1 menu-item">Carriers</div>
-		<div class="col-md-3 offset-md-1 menu-item">NTT</div>
-	</div>
 
-	<!-- Page Content -->
-	<div class="row circuit-selection">
-		<div class="company-input col-md-4 offset-md-1">
-		  	<div class="circuit-input-prepend">
-		    	<label class="input-group-text" for="company-name">Company Name</label>
-		  	</div>
-		  	<select class="custom-select circuit-select" id="company-name" v-model="formData.companyName" @change="companySelected()">
-		    <option selected v-bind:value="''">Choose...</option>
-		    <option 
-		    v-for="(company,key) in circuits"
-		    v-bind:value="key">
-		    {{key}}
-		    </option>
-		  </select>
+		<!-- Page Content -->
+		<div class="row circuit-selection">
+			<div class="company-input col-md-4 offset-md-1">
+			  	<div class="circuit-input-prepend">
+			    	<label class="input-group-text" for="company-name">Company Name</label>
+			  	</div>
+			  	<select class="custom-select circuit-select" id="company-name" v-model="formData.companyName" @change="companySelected()">
+			    <option selected v-bind:value="''">Choose...</option>
+			    <option 
+			    v-for="(company,key) in circuits"
+			    v-bind:value="key">
+			    {{key}}
+			    </option>
+			  </select>
+			</div>
+			<div class="circuit-input col-md-6">
+			  	<div class="circuit-input-prepend">
+			    	<label class="input-group-text" for="circuit-name">Circuit Name</label>
+			  	</div>
+			  	<select class="custom-select circuit-select" id="circuit-name" v-model="formData.circuitName">
+			    	<option v-for="(circuit,value) in circuitList" v-bind:value="circuit.Line">{{circuit.Line}}</option>
+			  	</select>
+			</div>
 		</div>
-		<div class="circuit-input col-md-6">
-		  	<div class="circuit-input-prepend">
-		    	<label class="input-group-text" for="circuit-name">Circuit Name</label>
-		  	</div>
-		  	<select class="custom-select circuit-select" id="circuit-name" v-model="formData.circuitName">
-		    	<option v-for="(circuit,value) in circuitList" v-bind:value="circuit.Line">{{circuit.Line}}</option>
-		  	</select>
-		</div>
-	</div>
 
-	<div class="row custoner-component">
-		<div class="col-md-3 noselect" 
-		v-for="type in types"
-	    v-bind:key="type"
-	    v-bind:class="['type-button', { active: currentType === type }]"
-	    v-on:click="currentType = type"
-		><h4>{{ type }}</h4></div>
-		<div class="col-md-12 email-content">
-			<form>
-				<div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-				  		<label class="float-left font-weight-light" for="form-number">Company</label>
-				    	<input type="text" v-model="formData.companyName" class="form-control" id="form-number" readonly>
-				  	</div>
-				</div>
-				<div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-ticket">Trouble Ticket Number</label>
-					    <input type="text" v-model="formData.ticketNumber" class="form-control" id="form-ticket">
-				  	</div>
-				</div>
-				<div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-circuit">Affected Circuit</label>
-					    <input type="text" v-model="formData.circuitName" class="form-control" id="form-circuit" readonly>
-				  	</div>
-				</div>
-			    <div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-start-time">Start Time</label>
-					    <input type="text" v-model="formData.startTime" class="form-control" id="form-start-time">
-				  	</div>
-			    </div>
-			    <div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-end-time">End Time</label>
-					    <input type="text" v-model="formData.endTime" class="form-control" id="form-end-time">
-				  	</div>
-			    </div>
-			    <div class="form-group" v-if="recovered">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-status">Current Status</label>
-					    <textarea  type="text" v-model="formData.status" class="form-control" id="form-status" rows="3">Down</textarea>
+		<div class="row custoner-component">
+			<div class="col-md-3 noselect" 
+			v-for="type in types"
+		    v-bind:key="type"
+		    v-bind:class="['type-button', { active: currentType === type }]"
+		    v-on:click="currentType = type"
+			><h4 class="unselectable-text">{{ type }}</h4></div>
+			<div class="col-md-12 email-content">
+				<form>
+					<div class="form-group">
+					  	<div class="col-md-4 offset-md-4">
+					  		<label class="float-left font-weight-light unselectable-text" for="form-number">Company</label>
+					    	<input type="text" v-model="formData.companyName" class="form-control" id="form-number" readonly>
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-ticket">Trouble Ticket Number</label>
+						    <input type="text" v-model="formData.ticketNumber" class="form-control" id="form-ticket">
+					  	</div>
+					</div>
+					<div class="form-group">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-circuit">Affected Circuit</label>
+						    <input type="text" v-model="formData.circuitName" class="form-control" id="form-circuit" readonly>
+					  	</div>
+					</div>
+				    <div class="form-group">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-start-time">Start Time</label>
+						    <input type="text" v-model="formData.startTime" class="form-control" id="form-start-time">
+					  	</div>
 				    </div>
-			    </div>
-			    <div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-action">Current Action</label>
-					    <textarea  type="text" v-model="actionTextComputed" class="form-control" id="form-action" rows="3">
-						</textarea>
+				    <div class="form-group" v-if="recovered">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-end-time">End Time</label>
+						    <input type="text" v-model="formData.endTime" class="form-control" id="form-end-time">
+					  	</div>
+				    </div>
+				    <div class="form-group" v-if="!recovered">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-status">Current Status</label>
+						    <textarea  type="text" v-model="formData.status" class="form-control" id="form-status" rows="3">Down</textarea>
+					    </div>
+				    </div>
+				    <div class="form-group" v-if="!recovered">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-action">Current Action</label>
+						    <textarea  type="text" v-model="formData.actionText" class="form-control" id="form-action" rows="3">
+							</textarea>
+					    </div>
+					</div>
+				    <div class="form-group">
+					  	<div class="col-md-4 offset-md-4">
+						    <label class="float-left font-weight-light unselectable-text" for="form-reason">Reason for Outage</label>
+						    <textarea  type="text" v-model="formData.reasonText" class="form-control" id="form-reason" rows="3"></textarea>
+				    	</div>
+				    </div>
+				  	<div class="form-group"><button type="button" v-on:click="compose()" class="btn btn-primary">Compose Email</button></div>
+				</form>
+			</div>
+		</div>
+	<!-- End Container -->
+	</div>
+	<div class="modal" tabindex="-1" role="dialog" id="nttModal">
+        <div class="modal-dialog" role="document">
+    		<div class="modal-content">
+				<div class="modal-body">
+				    <div class="container-fluid">
+				        <div class="row">
+					        <div class="col-lg-5">NTT Escalation List</div>
+					        <div class="col-lg-4 ml-auto">.col-md-4 .ml-auto</div>
+				        </div>
+				        <div class="row">
+					        <div class="col-lg-2"><h5>Name</h5></div>
+					        <div class="col-lg-4"><h5>Description</h5></div>
+					        <div class="col-lg-2"><h5>Phone</h5></div>
+					        <div class="col-lg-4"><h5>Email</h5></div>
+				        </div>
+				        <div class="row">
+					        <div class="col-lg-2">T1 for Access Line</div>
+					        <div class="col-lg-4">Receive call\email: 24/7<br>Troubleshooting: 8x5</div>
+					        <div class="col-lg-2">+84 24 3959 0368</div>
+					        <div class="col-lg-4">dnw.support@external.ntt.com.vn</div>
+				        </div>
 				    </div>
 				</div>
-			    <div class="form-group">
-				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light" for="form-reason">Reason for Outage</label>
-					    <textarea  type="text" v-model="reasonTextComputed" class="form-control" id="form-reason" rows="3"></textarea>
-			    	</div>
+				<div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" @click="$('#nttModal').modal('hide')">Close</button>
 			    </div>
-			  	<div class="form-group"><button type="button" v-on:click="compose()" class="btn btn-primary">Compose Email</button></div>
-			</form>
+			</div>
 		</div>
 	</div>
-<!-- End Container -->
-</div>
 </body>
 </html>
 

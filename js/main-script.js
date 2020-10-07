@@ -28,28 +28,23 @@ window.onload = function () {
 	    	ticketNumber: '',
 	    	circuitName: '',
 	    	status: 'Down',
-	    	actionText: '',
-	    	reasonText: '',
+	    	actionText: 'Now Investigating',
+	    	reasonText: 'Under investigation',
 	    	circuitSite: 'Default',
 	    	startTime: '',
 	    	endTime: '',
 	    },
 	  },
 	  computed: {
-	    // Default value for "Current Action" field
-		actionTextComputed: function () {
-	    	return this.currentType === 'Occurrence' ? 'Now Investigating' : "-	List task which is done\n-	List task which is doing\n-	List task which will do (if possible)"
-	    },
-	    // Default value for "Reason for Outage" field
-	    reasonTextComputed: function () {
-	    	return this.currentType === 'RFO' ? 'Detail of reason' : "Under investigation";
-	    },
 	    // Check circuit status tab to hide elements, returns true if circuit is Down 
 	    recovered: function () {
-	    	return this.currentType === 'Occurrence' || this.currentType === 'Status';
+	    	return this.currentType === 'Recovery' || this.currentType === 'RFO';
 	    },
 	  },
 	  methods: {
+	  	showModal: function() {
+	  		$('#nttModal').modal('show')
+	  	},
 	  	// Display drop down list for circuits once a company is selected
 	  	companySelected: function() {
 	  		if (this.formData.companyName == '') {
@@ -68,17 +63,15 @@ window.onload = function () {
 	  		this.formData.endTime = moment(this.formData.endTime).format('DD/MMM/YYYY hh:mm A');
 
 			if (diffDays > 0) {
-				return diffDays + ' days' + diffHrs + ' hours' + diffMins + ' minutes'
+				return diffDays + ' days ' + diffHrs + ' hours ' + diffMins + ' minutes'
 			} else if (diffDays == 0 && diffHrs > 0) {
-				return diffHrs + ' hours' + diffMins + ' minutes'				
+				return diffHrs + ' hours ' + diffMins + ' minutes'				
 			} else if (diffDays == 0 && diffHrs == 0 && diffMins > 0) {
 				return diffMins + ' minutes'				
 			}
 	  	},
 	    // Email body based on notification type
 	    emailBody: function () {
-	  		this.formData.actionText = this.actionTextComputed;
-	  		this.formData.reasonText = this.reasonTextComputed;
 	  		duration = this.durationCalculator();
 	    	bodyText = {
 	    		"Occurrence": 'OUTAGE %2D ' + this.currentType.toUpperCase() + '%0D%0A%0D%0ADear Mr/Ms,%0D%0ACompany: ' + this.formData.companyName + '.%0D%0AThank you for using our service.%0D%0AWe regret to inform you that there is an outage on your network.%0D%0A%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0ATrouble Ticket No: ' + this.formData.ticketNumber + '%0D%0AAffected Circuit: ' + this.formData.circuitName + ' %2D ' + this.formData.circuitSite + '%0D%0AStart Time: ' + this.formData.startTime + '%0D%0ACurrent Status: ' + this.formData.status + '%0D%0ACurrent Action: ' + this.formData.actionText + '%0D%0AReason for Outage: ' + this.formData.reasonText + '%0D%0A%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%2D%0D%0A%0D%0ABest Regards%0D%0A%2A%2A%2A%2A%2A%2A%2A%2A%2A%2A Please do NOT reply to this mail %2A%2A%2A%2A%2A%2A%2A%2A%2A%2A',

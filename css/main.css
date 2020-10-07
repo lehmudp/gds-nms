@@ -1,11 +1,12 @@
 /*Main Site*/
-body {
-	background-color: #eff7f6;
+#app {
+	/*background-color: #eff7f6;*/
+	background-color: #9FA8A3;
 }
 
 /*Header*/
 .nms-menu {
-	background-color: white;
+	background-color: #C5D5CB;
 	align-content: center;
 }
 
@@ -46,32 +47,25 @@ body {
 /*Email Template*/
 .custoner-component {
 	cursor: default;
-	padding: 100px 40px 0 40px;
+	padding: 100px 40px 40px 40px;
 	text-align: center;
 }
 
 .type-button {
 	border-radius: 7px 7px 0px 0px;
+	color: #F1FFFA;
 }
 
 .type-button:hover {
-	background-color: #DFCCB9;
-	color: #F1FFFA;
+	/*background-color: #DFCCB9;*/
+	background-color: #E3E0CF;
+	color: black;
 }
 
 .type-button.active {
-	background-color: #DFCCB9;
-	color: #F1FFFA;
-}
-
-.type-button::selection {
-  color: none;
-  background: none;
-}
-
-.type-button::-moz-selection {
-  color: none;
-  background: none;
+	/*background-color: #DFCCB9;*/
+	background-color: #E3E0CF;
+	color: black;
 }
 
 .type-button h4 {
@@ -79,7 +73,16 @@ body {
   padding-top: 10px;
 }
 
-.email-content{
-	background-color: #DFCCB9;
+.email-content {
+	/*background-color: #DFCCB9;*/
+	background-color: #E3E0CF;
 	padding: 100px 0;
+	border-radius: 0px 0px 7px 7px;	
+}
+
+.unselectable-text {
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
 }
