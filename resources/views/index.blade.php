@@ -1,16 +1,12 @@
-@extends('app')
+@extends('layouts.main')
+
+@section('script')
+<link rel="stylesheet" type="text/css" href="{{ asset('css/index.css')}}">
+<script src="{{ asset('js/index.js') }}"></script>
+@endsection
 
 @section('content')
-<div class="container-fluid" id="app">
-	<!-- Start Container -->
-	<!-- Header Menu -->
-	<div class="row nms-menu">
-		<div class="col-md-3">
-			 <img class="logo" src="{{ asset('gds.png') }}"/>
-		</div>
-		<div class="col-md-3 offset-md-1 menu-item unselectable-text">Carriers</div>
-		<div class="col-md-3 offset-md-1 menu-item unselectable-text">NTT</div>
-	</div>
+<div class="content-wrapper" v-on:click="showCarriers = false" v-bind:class="{ dim: showCarriers == true }">
     <div class="row circuit-selection">
 		<div class="company-input col-md-4 offset-md-1">
 		  	<div class="circuit-input-prepend">

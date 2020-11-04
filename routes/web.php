@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CircuitController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +14,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('email-template');
-});
+Route::get('/', ['as'=>'index', function () {
+    return view('index');
+}]);
+
+Route::get('/customer', ['as'=>'customer', function () {
+    return view('manage.customer');
+}]);
+
+Route::post('/import', [CircuitController::class, 'import'])->name('import');
+Route::get('api/circuit/all', [CircuitController::class, 'showAll'])->name('all');

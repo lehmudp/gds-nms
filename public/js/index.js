@@ -21,6 +21,7 @@ window.onload = function () {
 	  data: {
 	    currentType: 'Occurrence',
 	    types: ['Occurrence', 'Status', 'Recovery', 'RFO'],
+	    showCarriers: false,
 	    circuits: circuitData.circuit,
 	    circuitList: [],
 	    formData: {
@@ -88,4 +89,8 @@ window.onload = function () {
 	  	},
 	  },
 	})
+
+	$(function () {
+	    $('[data-toggle="tooltip"]').tooltip();
+	});
 }

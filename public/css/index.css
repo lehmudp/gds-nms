@@ -1,23 +1,10 @@
-/*Main Site*/
-#app {
-	/*background-color: #eff7f6;*/
-	background-color: #9FA8A3;
-}
+/*Carrier Menu*/
 
-/*Header*/
-.nms-menu {
-	background-color: #C5D5CB;
-	align-content: center;
-}
-
-.logo{
-	max-width:60%; 
-	height: auto;
-}
-
-.menu-item{
-	line-height: 110px;	
-	cursor: default;
+.carrier-menu{
+	left: 6%;
+	width: 8%;
+	z-index: 25;
+	background-color: #0261b3;
 }
 
 /*Circuit Selection*/
@@ -53,36 +40,23 @@
 
 .type-button {
 	border-radius: 7px 7px 0px 0px;
-	color: #F1FFFA;
-}
-
-.type-button:hover {
-	/*background-color: #DFCCB9;*/
-	background-color: #E3E0CF;
 	color: black;
 }
 
 .type-button.active {
 	/*background-color: #DFCCB9;*/
-	background-color: #E3E0CF;
-	color: black;
+	background-color: rgb(249, 208, 6, 0.1);
+	color: #0261b3;
 }
 
 .type-button h4 {
-  font-size: 1.15rem;
-  padding-top: 10px;
+    font-size: 1.15rem;
+    padding-top: 10px;
 }
 
 .email-content {
 	/*background-color: #DFCCB9;*/
-	background-color: #E3E0CF;
+	background-color: rgb(249, 208, 6, 0.1);
 	padding: 100px 0;
 	border-radius: 0px 0px 7px 7px;	
-}
-
-.unselectable-text {
-	-webkit-user-select: none; /* Safari */        
-	-moz-user-select: none; /* Firefox */
-	-ms-user-select: none; /* IE10+/Edge */
-	user-select: none; /* Standard */
 }

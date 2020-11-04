@@ -18,8 +18,7 @@ class CreateTableCircuitsTable extends Migration
             $table->id();
             $table->string('ntt_cid');
             $table->string('name')->unique();
-            $table->unsignedBigInteger('customer_id');
-            $table->foreign('customer_id')->references('id')->on('customers');            
+            $table->string('customer');          
             $table->string('tt2_id')->nullable();
             $table->string('province');
             $table->longText('site_description');
@@ -27,8 +26,8 @@ class CreateTableCircuitsTable extends Migration
             $table->string('al_type');
             $table->string('cable_type');
             $table->text('customer_contact');
-            $table->string('recipient_to');
-            $table->string('recipient_cc');
+            $table->string('recipient_to')->nullable();
+            $table->string('recipient_cc')->nullable();
             $table->string('recipient_bcc')->nullable();
             $table->string('po_number')->nullable();
             $table->string('po_description')->nullable();

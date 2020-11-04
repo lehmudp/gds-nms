@@ -1,0 +1,118 @@
+/*
+GDS Yellow: f9d006;
+GDS Blue: 0261b3;
+*/
+
+/*Tooltip */
+.bs-tooltip-right { 
+	margin-left: 10px; 
+}
+
+.tooltip-inner {
+	background-color: #0261b3;
+}
+.tooltip.bs-tooltip-right .arrow:before {
+    border-right-color: #0261b3 !important;
+}
+
+/*Vue Transition Slide*/
+
+.slide-leave-active,
+.slide-enter-active {
+  transition: 0.5s;
+}
+.slide-enter {
+  transform: translate(-100%, 0);
+}
+.slide-leave-to {
+  transform: translate(-100%, 0);
+}
+
+/*Unselectable Text*/
+
+.unselectable-text {
+	-webkit-user-select: none; /* Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+/Edge */
+	user-select: none; /* Standard */
+}
+
+[v-cloak] {
+  display: none;
+}
+
+/*Main Site*/
+#app {
+	background-color: white;
+	overflow: hidden;
+}
+
+.main-div {
+	padding-left: 0px;
+	position: relative;
+}
+
+.logo {
+	max-width:70%; 
+	position: absolute;
+    margin: auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+/*Vertical Menu*/
+
+.menu-item {
+	text-align: center;
+	vertical-align: middle;
+	line-height: 25px; 
+	cursor: default;
+	font-family: 'Montserrat', sans-serif;
+	font-weight: 500;
+	flex-grow: 0.2;
+    display:flex; 
+    align-items:center;
+    color: #0261b3;
+}
+
+.menu-item.active {
+	color: #f9d006;
+}
+
+.side-menu {
+	float: left;
+	position: fixed;
+	width: 6%;
+	background-color: #f8f8ff;
+	z-index: 50;
+    height: 100vh;
+    display: flex; 
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+}
+
+/*Main Site Content*/
+
+.content-wrapper {
+	float: right;
+	width: 94%;
+}
+
+.content-wrapper.dim {
+	z-index: 10;
+	background-color: rgb(0,0,0, 0.3);
+}
+
+/*No Input Hightlight*/
+
+input:focus {
+	outline:none;
+	border:0;
+}
+
+.default-cursor {
+	cursor: default;
+}
