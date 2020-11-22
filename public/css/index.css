@@ -1,12 +1,46 @@
 /*Carrier Menu*/
-
-.carrier-menu{
+.carrier-menu {
 	left: 6%;
 	width: 8%;
 	z-index: 25;
 	background-color: #0261b3;
 }
 
+.carrier-menu p {
+	font-family: 'Open Sans', sans-serif;
+	color: white;	
+}
+
+.supplier-content {
+	float: right;
+	width: 86%;
+	background-color: rgb(248, 248, 255);
+	z-index: 20;
+	height: 100vh;
+	color: rgb(2, 97, 179);
+	padding: 50px;
+	font-family: 'Open Sans', sans-serif  !important;
+}
+
+.supplier-content pre{
+	font-family: 'Open Sans', sans-serif  !important;
+}
+
+.supplier-content.wide {
+	background-color: rgb(2, 97, 179);
+	width: 94%;
+	color: rgb(248, 248, 255) !important;
+}
+
+.supplier-content.wide {
+	color: rgb(248, 248, 255);
+}
+
+.table-align {
+	line-height: 30px; 
+	align-content: center; 
+	vertical-align: center;
+}
 /*Circuit Selection*/
 .circuit-selection {
 	padding: 20px;

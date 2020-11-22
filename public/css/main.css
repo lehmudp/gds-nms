@@ -49,6 +49,7 @@ GDS Blue: 0261b3;
 
 .main-div {
 	padding-left: 0px;
+	padding-right: 0px;
 	position: relative;
 }
 
@@ -104,6 +105,10 @@ GDS Blue: 0261b3;
 .content-wrapper.dim {
 	z-index: 10;
 	background-color: rgb(0,0,0, 0.3);
+}
+
+.content-wrapper.dim input, .content-wrapper.dim textarea {
+	background-color: rgb(0,0,0, 0.1);
 }
 
 /*No Input Hightlight*/

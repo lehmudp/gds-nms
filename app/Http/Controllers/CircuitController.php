@@ -9,7 +9,8 @@ use Illuminate\Support\Facades\Log;
 use App\Imports\CircuitsImport;
 use Maatwebsite\Excel\HeadingRowImport;
 use Illuminate\Support\Facades\DB;
- 
+use Illuminate\Database\Eloquent\Model;
+
 
 class CircuitController extends Controller
 {

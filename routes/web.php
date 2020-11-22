@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CircuitController;
+use App\Http\Controllers\SupplierController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,6 +22,9 @@ Route::get('/', ['as'=>'index', function () {
 Route::get('/customer', ['as'=>'customer', function () {
     return view('manage.customer');
 }]);
-
+// Circuit
 Route::post('/import', [CircuitController::class, 'import'])->name('import');
 Route::get('api/circuit/all', [CircuitController::class, 'showAll'])->name('all');
+// Supplier
+Route::get('api/supplier/all', [SupplierController::class, 'index'])->name('index');
+
