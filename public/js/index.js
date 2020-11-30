@@ -4,14 +4,18 @@ window.onload = function () {
 	    data: {
 		    currentType: 'Occurrence',
 		    types: ['Occurrence', 'Status', 'Recovery', 'RFO'],
+		    // Modal Toggle Bool
 		    showCarriers: false,
 		    showSupplier: false,
 		    modalContent: {},
 		    wideContent: false,
+		    // Carrier & NTT information for Side Menu
 		    supplier: {},
 		    carrierList: [],
-		    circuits: [],
+		    // Circuit information for Form Submission
+		    customerList: [],
 		    circuitList: [],
+		    selectedCircuit: {},
 		    formData: {
 		    	companyName: '',
 		    	ticketNumber: '',
@@ -32,7 +36,7 @@ window.onload = function () {
 	  	},
 	    methods: {
 	    	formatText(str) {
-	    		return str.replaceAll(";", "\n");
+	    		return str.replaceAll(">", "\n");
 	    	},
 	    	showCarrierMenu: function () {
 				this.showSupplier = false;
@@ -40,21 +44,34 @@ window.onload = function () {
 	    	},
 		  	showModal: function(currentSupplier) {
 		  		if (currentSupplier == "NTT") {
-		  			this.wideContent = true;
-		  			this.showCarriers = false;
+		  			if (this.wideContent) {
+			  			this.showSupplier = false;
+			  			this.wideContent = false;
+			  			return
+			  		} else {
+			  			this.wideContent = true;
+			  			this.showCarriers = false;
+			  		}
 		  		} else {
 		  			this.wideContent = false;
 		  		}
-			  	this.showSupplier = true;		  			
-		  		this.modalContent = this.supplier[currentSupplier];
+	  			this.showSupplier = true;
+		  		this.modalContent = this.suppliers[currentSupplier];
 		  	},
 	  		// Display drop down list for circuits once a company is selected
 		  	companySelected: function() {
-		  		if (this.formData.companyName == '') {
-		  			this.formData.circuitName = '';
-		  			this.circuitList = [];
-		  		} 
-		  		else this.circuitList = this.circuits[this.formData.companyName];
+		  		axios.get('api/circuit/company/' + this.formData.companyName)
+		    		.then(response => {
+			    		this.circuitList = response.data;
+		            })
+					.catch(response => {
+		               console.log(response);
+	            })
+		  	},
+		  	circuitSelected: function() {
+		  		console.log(this.getRecipient());
+		  		this.formData.companyName = this.selectedCircuit.customer;
+		  		this.formData.circuitName = this.selectedCircuit.name;
 		  	},
 		  	durationCalculator: function() {
 		  		diffMs = (new Date(this.formData.endTime) - new Date(this.formData.startTime));
@@ -84,16 +101,28 @@ window.onload = function () {
 		    	}
 		    	return bodyText[this.currentType]
 		    },
+		    getRecipient: function () {
+				email = "mailto:" + this.selectedCircuit['recipient_to'] + "?";
+		  		if (this.selectedCircuit['recipient_cc'] !== '' && this.selectedCircuit['recipient_cc'] !== null) {
+		  					  		console.log(this.selectedCircuit['recipient_cc'])
+			  		email = email + "cc=" + this.selectedCircuit['recipient_cc'] + "&";
+		  		}
+		  		if (this.selectedCircuit['recipient_bcc'] !== '' && this.selectedCircuit['recipient_bcc'] !== null) {
+			  		console.log(this.selectedCircuit['recipient_bcc']);
+		  			email = email + "bcc=" + this.selectedCircuit['recipient_bcc'] + "&";
+		  		}
+		  		return email;
+		    },
 		  	compose: function() {
-		  		email = 'sample@gmail.com';
+		  		email = this.getRecipient();
 	         	subject = '[Outage report - ' + this.currentType + '] ' + this.formData.companyName + ' ( ' + this.formData.circuitName + ' ) (Ticket No: ' + this.formData.ticketNumber + ') %2D site ' + this.formData.circuitSite;
-	        	document.location = "mailto:" + email + "?subject=" + subject + "&body=" + this.emailBody();
+	        	document.location = email + "subject=" + subject + "&body=" + this.emailBody();
 		  	},
 		},
 		created() {
     		axios.get('api/supplier/all')
     		.then(response => {
-    			this.supplier = response.data;
+    			this.suppliers = response.data;
                	for (var item in response.data) {
                		if (item  != "NTT") {
                			this.carrierList.push(item);
@@ -102,7 +131,14 @@ window.onload = function () {
             })
 			.catch(response => {
                console.log(response);
-            });
+            }),
+            axios.get('api/customer/all')
+    		.then(response => {
+    			this.customerList = response.data;
+            })
+			.catch(response => {
+               console.log(response);
+            })
 	    },
 	})
 

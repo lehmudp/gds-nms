@@ -11,7 +11,9 @@ class Circuit extends Model
     protected $fillable = [
         'ntt_cid',
         'name',
-        'customer_id',
+        'customer',
+        'service_name',
+        'carrier_name',
         'tt2_id',
         'province',
         'site_description',

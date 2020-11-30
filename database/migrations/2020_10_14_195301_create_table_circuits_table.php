@@ -18,7 +18,9 @@ class CreateTableCircuitsTable extends Migration
             $table->id();
             $table->string('ntt_cid');
             $table->string('name')->unique();
-            $table->string('customer');          
+            $table->string('customer');
+            $table->string('service_name');          
+            $table->string('carrier_name');
             $table->string('tt2_id')->nullable();
             $table->string('province');
             $table->longText('site_description');

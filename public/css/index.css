@@ -1,7 +1,7 @@
 /*Carrier Menu*/
 .carrier-menu {
 	left: 6%;
-	width: 8%;
+	width: 4%;
 	z-index: 25;
 	background-color: #0261b3;
 }
@@ -9,11 +9,14 @@
 .carrier-menu p {
 	font-family: 'Open Sans', sans-serif;
 	color: white;	
+	font-size: 15px;
 }
 
 .supplier-content {
 	float: right;
-	width: 86%;
+	width: 90%;
+	position: fixed;
+	left: 10%;
 	background-color: rgb(248, 248, 255);
 	z-index: 20;
 	height: 100vh;
@@ -24,22 +27,28 @@
 
 .supplier-content pre{
 	font-family: 'Open Sans', sans-serif  !important;
+	margin: 0;
+	display: table-cell; 
+	vertical-align: middle;
 }
 
 .supplier-content.wide {
 	background-color: rgb(2, 97, 179);
 	width: 94%;
+	position: fixed;
+	left: 6%;
+}
+
+.supplier-content.wide pre{
 	color: rgb(248, 248, 255) !important;
 }
 
-.supplier-content.wide {
-	color: rgb(248, 248, 255);
+.carrier-note {
+	font-size: 13px;
 }
 
-.table-align {
-	line-height: 30px; 
-	align-content: center; 
-	vertical-align: center;
+.table th{
+	width: 8 rem;
 }
 /*Circuit Selection*/
 .circuit-selection {

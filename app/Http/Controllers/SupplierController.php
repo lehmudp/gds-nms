@@ -28,14 +28,10 @@ class SupplierController extends Controller
         return $result;
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function showAll()
     {
-        //
+        $result = DB::table('suppliers')->get()->groupBy('supplier_name');
+        return $result;
     }
 
     /**

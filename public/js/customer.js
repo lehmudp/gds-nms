@@ -2,6 +2,7 @@ window.onload = function () {
 	var app = new Vue({
 		el: '#app',
 		data: {
+			currentRoute: '',
 			fileName: 'Import file',
 	  		file: '',
 	  		circuitData: [],
@@ -28,6 +29,8 @@ window.onload = function () {
 	    	}
 	    },
 	    created() {
+	    		this.currentRoute = window.location.pathname;
+	    		console.log(this.currentRoute);
 	    		axios.get('api/circuit/all')
 	    		.then(response => {
                    this.circuitData = response.data.data;

@@ -13,7 +13,7 @@
 		</svg>
 	</div>
 	<div class="menu-item">
-		<img class="logo" src="{{ asset('img/gds.png') }}" v-on:click="showCarriers = false; showSupplier = false"/>
+		<img class="logo" src="{{ asset('img/gds.png') }}" onclick="window.location='/customer'"/>
 	</div>
 	<div class="menu-item unselectable-text"  data-toggle="tooltip" data-placement="right" title="NTT" v-on:click="showModal('NTT')">
 		<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-broadcast" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +36,7 @@
 			<table class="table table-bordered">
 			    <thead>
 				    <tr>
-				        <th scope="col" class="table-align">Item</th>
+				        <th scope="col"><pre>Item</pre></th>
 				        <th scope="col" v-for="item in value" class="table-align">
 				        	<pre>@{{formatText(item.level)}}</pre>
 				    	</th>
@@ -44,31 +44,34 @@
 			    </thead>
 			    <tbody>
 				    <tr>
-				        <th scope="row">Name</th>
+				        <th scope="row"><pre>Name</pre></th>
 				        <th scope="col" v-for="item in value">
-				        	<pre>@{{formatText(item.contact_name)}}</pre>
+				        	<pre>@{{item.contact_name}}</pre>
 				        </th>
 				    </tr>
 				    <tr>
-				        <th scope="row">Title</th>
+				        <th scope="row"><pre>Title</pre></th>
 				        <th scope="col" v-for="item in value">
 				        	<pre>@{{formatText(item.contact_title)}}</pre>
 				    	</th>
 				    </tr>
 				    <tr>
-				        <th scope="row">Email</th>
+				        <th scope="row"><pre>Email</pre></th>
 				        <th scope="col" v-for="item in value">
 				        	<pre>@{{formatText(item.contact_email)}}</pre>
 				    	</th>
 				    </tr>
 				    <tr>
-				        <th scope="row">Phone Number</th>
+				        <th scope="row"><pre>Phone Number</pre></th>
 				        <th scope="col-md-3"  v-for="item in value">
 				        	<pre>@{{formatText(item.contact_phone_number)}}</pre>
 				        </th>
 				    </tr>
 			    </tbody>
 			</table>
+			<div v-for="item in value">
+				<p class="carrier-note">@{{formatText(item.note)}}</p>
+			</div>
     	</div>
 		
 	</div>
@@ -80,11 +83,10 @@
 		    	<label class="input-group-text" for="company-name">Company Name</label>
 		  	</div>
 		  	<select class="custom-select circuit-select" id="company-name" v-model="formData.companyName" @change="companySelected()">
-		    <option selected v-bind:value="''">Choose...</option>
 		    <option 
-		    v-for="(company,key) in circuits"
-		    v-bind:value="key">
-		    @{{key}}
+		    v-for="item in customerList"
+		    v-bind:value="item.customer">
+		    @{{item.customer}}
 		    </option>
 		  </select>
 		</div>
@@ -92,8 +94,8 @@
 		  	<div class="circuit-input-prepend">
 		    	<label class="input-group-text" for="circuit-name">Circuit Name</label>
 		  	</div>
-		  	<select class="custom-select circuit-select" id="circuit-name" v-model="formData.circuitName">
-		    	<option v-for="(circuit,value) in circuitList" v-bind:value="circuit.Line">@{{circuit.Line}}</option>
+		  	<select class="custom-select circuit-select" id="circuit-name" v-model="selectedCircuit" @change="circuitSelected()">
+		    	<option v-for="circuit in circuitList" v-bind:value="circuit">@{{circuit.name}}</option>
 		  	</select>
 		</div>
 	</div>
