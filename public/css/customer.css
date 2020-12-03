@@ -1,6 +1,6 @@
 .create-new {
 	padding-top: 40px;
-	padding-bottom: 40px;
+	padding-bottom: 20px;
 }
 
 .align-text {
@@ -10,4 +10,14 @@
 
 .circuit-list {
 	padding: 0 30px;
+}
+
+.upload-dialog-box {
+	text-align: center;
+	padding: 10px;
+	background-color: #d4edda;
+	color: #155724;
+	margin-bottom: 30px;
+	justify-content: center;
+	align-items: center;
 }

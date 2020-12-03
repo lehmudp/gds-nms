@@ -37,6 +37,8 @@ class CircuitsImport implements ToCollection, WithMultipleSheets, WithHeadingRow
 		     			[
 	        				'ntt_cid'  => $row['ntts_cid'],
 	        				'customer'  => $row['customer'],
+	        				'service_name'  => $row['service_name'],
+	        				'carrier_name'  => $row['carrier_name'],
 	        				'tt2_id'  => $row['ma_tt2'],
 	        				'province'  => $row['tinh'],
 	        				'site_description'  => $row['sites_description'],

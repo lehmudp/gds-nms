@@ -11,7 +11,7 @@ window.onload = function () {
 	    		return str.replaceAll(">", " ");
 	    	},
 	    	edit(id) {
-	    		window.location = '/supplier/edit/' + id; 
+	    		// window.location = '/supplier/edit/' + id; 
 	    	}
 	    },
 	    created() {

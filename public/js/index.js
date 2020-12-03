@@ -7,6 +7,7 @@ window.onload = function () {
 		    // Modal Toggle Bool
 		    showCarriers: false,
 		    showSupplier: false,
+		    carrierTitle: '',
 		    modalContent: {},
 		    wideContent: false,
 		    // Carrier & NTT information for Side Menu
@@ -39,6 +40,7 @@ window.onload = function () {
 	    		return str.replaceAll(">", "\n");
 	    	},
 	    	showCarrierMenu: function () {
+	    		this.wideContent = false;
 				this.showSupplier = false;
 				this.showCarriers = !this.showCarriers;
 	    	},
@@ -54,6 +56,8 @@ window.onload = function () {
 			  		}
 		  		} else {
 		  			this.wideContent = false;
+			  		this.carrierTitle = currentSupplier;
+
 		  		}
 	  			this.showSupplier = true;
 		  		this.modalContent = this.suppliers[currentSupplier];

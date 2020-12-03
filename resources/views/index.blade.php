@@ -15,7 +15,7 @@
 	<div class="menu-item">
 		<img class="logo" src="{{ asset('img/gds.png') }}" onclick="window.location='/customer'"/>
 	</div>
-	<div class="menu-item unselectable-text"  data-toggle="tooltip" data-placement="right" title="NTT" v-on:click="showModal('NTT')">
+	<div class="menu-item unselectable-text"  data-toggle="tooltip" data-placement="right" title="NTT" v-on:click="showModal('NTT')" v-bind:class="{ active: wideContent }">
 		<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-broadcast" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		    <path fill-rule="evenodd" d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707zm2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 0 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708zm5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708zm2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707z"/>
 		    <path d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
@@ -31,6 +31,8 @@
 </transition>
 <transition name="slide">
 	<div class="supplier-content" v-if="showSupplier" v-bind:class="{ wide: wideContent }">
+		<div class="carrier-name" v-if="wideContent">NTT Escalation List</div>
+		<div class="carrier-name" v-if="showCarriers">@{{carrierTitle}}</div>
 		<div v-for="(value, propertyName) in modalContent">
 			<h3>@{{ propertyName }}</h3>
 			<table class="table table-bordered">

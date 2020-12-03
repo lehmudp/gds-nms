@@ -9,7 +9,7 @@
 <div class="content-wrapper">
 	<div class="row create-new">
 		<div class="col-md-1 offset-md-4 align-text">
-			<button type="button" class="btn btn-outline-dark">Add Circuit</button>
+			<button type="button" class="btn btn-outline-dark">Add</button>
 		</div>
 		<div class="col-md-1 align-text" style="line-height: 38px;">Or</div>
 		<div class="input-group col-md-3">
@@ -22,7 +22,10 @@
 			</div>
 		</div>
 	</div>
-	<div class="circuit-list">
+	<div class="row upload-dialog-box" v-if="showDialogMessage">
+		@{{uploadDialog}}
+	</div>
+	<div class="row circuit-list">
 		<table class="table">
 			<tr>
 				<th scope="col">NTT CID</th>
@@ -38,7 +41,9 @@
 				<td>@{{ circuit.customer }}</td>
 				<td>@{{ circuit.site_description }}</td>
 				<td>@{{ circuit.al_type }}</td>
-				<td>@Button</td>
+				<td>
+					<button type="button" class="btn btn-outline-dark" v-on:click="edit(item.id)">Edit</button>
+				</td>
 			</tr>
 		</table>
 	</div>

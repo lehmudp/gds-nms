@@ -5,6 +5,8 @@ window.onload = function () {
 			currentRoute: '',
 			fileName: 'Import file',
 	  		file: '',
+	  		showDialogMessage: false,
+	  		uploadDialog: '',
 	  		circuitData: [],
 	  		pagination: {
 	  			nextPage: '',
@@ -14,30 +16,37 @@ window.onload = function () {
 	    methods: {
 	    	handleFileUpload: function(event) {
 	    		this.file = event.target.files[0];
-	    		this.fileName = this.file.name; 
+	    		this.fileName = "File loaded"; 
 		    },
 	    	uploadFile: function() {
 	    		let formData = new FormData();
 	    		formData.append('file', this.file);
+	    		console.log('Here');
 	    		axios.post('/import', formData)
 	    		.then(response => {
-                   console.log(response);
+	    			console.log(response);
+                   this.showDialogMessage = true;
+                   this.uploadDialog = "Data file uploaded successfully."
+                   setTimeout(function() {
+                		this.showDialogMessage = false;
+                		location.reload();   
+    			   }, 3000); 
                 })
 				.catch(response => {
                    console.log(response);
                 });
+	    	},
+	    	edit(id) {
+	    		// window.location = '/supplier/edit/' + id; 
 	    	}
 	    },
 	    created() {
 	    		this.currentRoute = window.location.pathname;
-	    		console.log(this.currentRoute);
 	    		axios.get('api/circuit/all')
 	    		.then(response => {
                    this.circuitData = response.data.data;
                    this.pagination.nextPage = response.data.next_page_url;
                    this.pagination.previousPage = response.data.prev_page_url;
-                   console.log(this.circuitData);
-                   console.log(this.pagination);
                 })
 				.catch(response => {
                    console.log(response);
