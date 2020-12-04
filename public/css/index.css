@@ -80,10 +80,29 @@
 	border-radius: 0 0.25rem 0.25rem 0;
 }
 
+/*Info Button*/
+
+.circuit-info button {
+	padding-top: 50px important!;
+}
+
+.modal-dialog {
+	max-width: 70%; /* New width for default modal */
+}
+
+.formatted-field {
+	white-space: pre;
+	margin: auto;
+}
+
+.borderless td, .borderless th {
+    border: none;
+}
+
 /*Email Template*/
 .custoner-component {
 	cursor: default;
-	padding: 100px 40px 40px 40px;
+	padding: 50px 40px 40px 40px;
 	text-align: center;
 }
 

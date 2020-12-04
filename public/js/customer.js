@@ -16,7 +16,7 @@ window.onload = function () {
 	    methods: {
 	    	handleFileUpload: function(event) {
 	    		this.file = event.target.files[0];
-	    		this.fileName = "File loaded"; 
+	    		this.fileName = this.file.name.substring(0,10) + "...";
 		    },
 	    	uploadFile: function() {
 	    		let formData = new FormData();
@@ -30,7 +30,7 @@ window.onload = function () {
                    setTimeout(function() {
                 		this.showDialogMessage = false;
                 		location.reload();   
-    			   }, 3000); 
+    			   }, 2000); 
                 })
 				.catch(response => {
                    console.log(response);

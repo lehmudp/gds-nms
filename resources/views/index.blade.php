@@ -101,6 +101,11 @@
 		  	</select>
 		</div>
 	</div>
+	<div class="row justify-content-md-center" v-if="hasCircuitInfo">
+		<div class="circuit-info" style="padding-top: 50px">
+			<button type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#circuitInformationModal">Show Circuit Info</button>
+		</div>
+	</div>
 	<!-- Form Input Section -->
 	<div class="row custoner-component">
 		<div class="col-md-3 noselect" 
@@ -164,5 +169,76 @@
 			</form>
 		</div>
 	</div>
+</div>
+
+
+<div v-if="hasCircuitInfo" class="modal fade" id="circuitInformationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">@{{selectedCircuit.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <table class="table borderless">
+    		<tr>
+    			<th scope="row">Customer</th>
+    			<td>@{{selectedCircuit.customer}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">NTT's CIT</th>
+    			<td>@{{selectedCircuit.ntt_cid}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">TT2 ID Code</th>
+    			<td>@{{selectedCircuit.tt2_id}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">Province</th>
+    			<td>@{{selectedCircuit.province}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">Site Description</th>
+    			<td>@{{selectedCircuit.site_description}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">AL Type</th>
+    			<td>@{{selectedCircuit.al_type}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">Customer Contact</th>
+    			<td class="formatted-field">
+    				@{{formatText(selectedCircuit.customer_contact)}}
+    			</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">PO Number</th>
+    			<td>@{{selectedCircuit.po_number}}</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">PO Description</th>
+    			<td class="formatted-field">
+    				@{{formatText(selectedCircuit.po_description)}}
+    			</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">Config</th>
+    			<td class="formatted-field">
+    				@{{formatText(selectedCircuit.config)}}
+    			</td>
+    		</tr>
+    		<tr>
+    			<th scope="row">Note</th>
+    			<td>@{{selectedCircuit.note}}</td>
+    		</tr>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
 </div>
 @endsection
