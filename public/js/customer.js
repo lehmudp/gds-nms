@@ -3,8 +3,9 @@ window.onload = function () {
 		el: '#app',
 		data: {
 			currentRoute: '',
-			fileName: 'Import file',
+			fileStatus: 'Select File',
 	  		file: '',
+	  		hasFile: false,
 	  		showDialogMessage: false,
 	  		uploadDialog: '',
 	  		circuitData: [],
@@ -15,16 +16,18 @@ window.onload = function () {
 	    },
 	    methods: {
 	    	handleFileUpload: function(event) {
-	    		this.file = event.target.files[0];
-	    		this.fileName = this.file.name.substring(0,10) + "...";
+	    		if (event.target.files.length !== 0) {
+		    		this.file = event.target.files[0];
+		    		this.fileName = this.file.name.substring(0,10) + "...";
+		    		this.hasFile = true;
+		    		this.fileStatus = 'File Loaded'
+	    		}
 		    },
 	    	uploadFile: function() {
 	    		let formData = new FormData();
 	    		formData.append('file', this.file);
-	    		console.log('Here');
 	    		axios.post('/import', formData)
 	    		.then(response => {
-	    			console.log(response);
                    this.showDialogMessage = true;
                    this.uploadDialog = "Data file uploaded successfully."
                    setTimeout(function() {

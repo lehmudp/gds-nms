@@ -1,9 +1,10 @@
 /*Carrier Menu*/
+
 .carrier-menu {
 	left: 6%;
 	width: 6%;
 	z-index: 25;
-	background-color: #0261b3;
+	background: #0261b3 url(/img/texture-noise.png) repeat;
 }
 
 .carrier-menu p {
@@ -17,7 +18,7 @@
 	width: 88%;
 	position: fixed;
 	left: 12%;
-	background-color: rgb(248, 248, 255);
+	background: rgb(248, 248, 255) url(/img/texture-noise.png) repeat;
 	z-index: 20;
 	height: 100vh;
 	color: rgb(2, 97, 179);
@@ -91,12 +92,13 @@
 }
 
 .formatted-field {
-	white-space: pre;
+	white-space: pre-line;
 	margin: auto;
 }
 
-.borderless td, .borderless th {
-    border: none;
+.customer-info td, .customer-info th {
+	/*border-bottom: 1px solid #dee2e6;*/
+    text-align: left;
 }
 
 /*Email Template*/

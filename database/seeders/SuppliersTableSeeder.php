@@ -209,7 +209,7 @@ class SuppliersTableSeeder extends Seeder
 				'level' => 'Level 2',
 				'contact_name' => 'Mr. Vo Chi Quy',
 				'contact_title' => 'NI Deputy Director',
-				'contact_phone_number' => '+84-28-3827-3646 Ext: 102;+84 918 355 789',
+				'contact_phone_number' => '+84-28-3827-3646>Ext: 102;+84 918 355 789',
 				'contact_email' => 'quy.vo@global.ntt;>CC:>NTTVN.NI.HCM@global.ntt',
 				'group_key' => '',
 				'group_value' => '',

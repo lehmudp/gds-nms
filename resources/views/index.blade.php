@@ -182,10 +182,10 @@
         </button>
       </div>
       <div class="modal-body">
-        <table class="table borderless">
+        <table class="table customer-info">
     		<tr>
-    			<th scope="row">Customer</th>
-    			<td>@{{selectedCircuit.customer}}</td>
+    			<th scope="row" style="border-top: none;">Customer</th>
+    			<td style="border-top: none;">@{{selectedCircuit.customer}}</td>
     		</tr>
     		<tr>
     			<th scope="row">NTT's CIT</th>
@@ -229,7 +229,7 @@
     				@{{formatText(selectedCircuit.config)}}
     			</td>
     		</tr>
-    		<tr>
+    		<tr v-if="selectedCircuit.note !== null">
     			<th scope="row">Note</th>
     			<td>@{{selectedCircuit.note}}</td>
     		</tr>

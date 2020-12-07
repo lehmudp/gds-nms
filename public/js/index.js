@@ -38,6 +38,7 @@ window.onload = function () {
 	  	},
 	    methods: {
 	    	formatText(str) {
+	    		str = str.trim();
 	    		return str.replaceAll(">", "\n");
 	    	},
 	    	showCarrierMenu: function () {

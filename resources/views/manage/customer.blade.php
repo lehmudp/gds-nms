@@ -13,13 +13,17 @@
 		</div>
 		<div class="col-md-1 align-text" style="line-height: 38px;">Or</div>
 		<div class="input-group col-md-3">
-			<div class="custom-file">
+			<div>
+				<input type="file" ref="file" @change="handleFileUpload($event)" style="display: none">
+				<button type="button" @click="$refs.file.click()" v-bind:class="[hasFile ? 'btn-success' : 'btn-outline-success', 'btn']">@{{fileStatus}}</button>
+			</div>
+			<button type="button" class="btn btn-outline-primary" @click="uploadFile()" style="margin-left: 10px;">Upload</button>
+			<!-- <div class="custom-file">
 			    <input type="file" class="custom-file-input" id="file-input" @change="handleFileUpload($event)">
-			    <label class="custom-file-label" for="file-input">@{{ fileName }}</label>
 			</div>
 			<div class="input-group-append">
 			    <span class="input-group-text default-cursor" @click="uploadFile()">Upload</span>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="row upload-dialog-box" v-if="showDialogMessage">

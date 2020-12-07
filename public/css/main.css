@@ -1,6 +1,7 @@
 /*
 GDS Yellow: f9d006;
 GDS Blue: 0261b3;
+background: # url(/img/texture-noise.png) repeat;
 */
 
 /*Tooltip */
@@ -38,12 +39,12 @@ GDS Blue: 0261b3;
 }
 
 [v-cloak] {
-  display: none;
+    display: none;
 }
 
 /*Main Site*/
 #app {
-	background-color: white;
+	background: #ecebe8 url(/img/texture-noise.png) repeat;
 	overflow: hidden;
 }
 
@@ -86,7 +87,7 @@ GDS Blue: 0261b3;
 	float: left;
 	position: fixed;
 	width: 6%;
-	background-color: #f8f8ff;
+	background: #F6F5F4 url(/img/texture-noise.png) repeat;
 	z-index: 50;
     height: 100vh;
     display: flex; 
@@ -100,6 +101,7 @@ GDS Blue: 0261b3;
 .content-wrapper {
 	float: right;
 	width: 94%;
+	min-height: 100vh;
 }
 
 .content-wrapper.dim {
