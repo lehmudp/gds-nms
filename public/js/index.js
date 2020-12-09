@@ -37,7 +37,14 @@ window.onload = function () {
 	    	},
 	  	},
 	    methods: {
+	    	dismissAll() {
+				this.showCarriers = false;
+		    	this.showSupplier = false;
+	    	},
 	    	formatText(str) {
+	    		if (str == null) {
+	    			return;
+	    		}
 	    		str = str.trim();
 	    		return str.replaceAll(">", "\n");
 	    	},

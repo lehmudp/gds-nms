@@ -28,7 +28,10 @@
 </head>
 <body>
 	<div class="container-fluid main-div" id="app" v-cloak>
-		@if (Route::currentRouteName() == "customer" || Route::currentRouteName() == "supplier")
+		@if (Route::currentRouteName() !== "index")
+			<div class=navigation-button>
+				<button type="button" class="btn btn-outline-warning btn-sm"  onclick="window.location='/'">Main</button>
+			</div>
 			<div class="side-menu">
 				<div class="menu-item unselectable-text" data-toggle="tooltip" data-placement="right" title="Customer" v-bind:class="{ active: currentRoute == '/customer' }"  onclick="window.location='/customer'">
 					<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-person-badge-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -36,7 +39,7 @@
 					</svg>
 				</div>
 				<div class="menu-item">
-					<img class="logo" src="{{ asset('img/gds.png') }}" onclick="window.location='/'"/>
+					<img class="logo" src="{{ asset('img/gds.png') }}" onclick="window.location='/customer'"/>
 				</div>
 				<div class="menu-item unselectable-text"  data-toggle="tooltip" data-placement="right" title="Supplier" v-bind:class="{ active: currentRoute == '/supplier' }"  onclick="window.location='/supplier'">
 					<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-reception-4" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

@@ -4,8 +4,15 @@
 }
 
 .align-text {
-	align-content: center;
-	text-align: center;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	padding-right: 40px;
+}
+
+.button-separator {
+	padding: 0 25px;
+	line-height: 38px
 }
 
 .circuit-list {
@@ -20,4 +27,30 @@
 	margin-bottom: 30px;
 	justify-content: center;
 	align-items: center;
+}
+
+/*Edit & New Page*/
+.circuit-form h4{
+	margin-top: 50px;
+	text-align: center;
+}
+
+.update-message {
+	margin-top: 30px;
+	padding-top: 10px;	
+	text-align: center;
+}
+
+.needs-validation {
+	padding-top: 20px;
+}
+
+.form-item {
+	align-content: center;
+	justify-content: center;
+	padding-top: 10px;
+}
+
+.form-item label {
+	text-align: right;
 }

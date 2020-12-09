@@ -28,7 +28,7 @@ class CreateTableCircuitsTable extends Migration
             $table->string('al_type');
             $table->string('cable_type');
             $table->text('customer_contact');
-            $table->string('recipient_to')->nullable();
+            $table->string('recipient_to');
             $table->string('recipient_cc')->nullable();
             $table->string('recipient_bcc')->nullable();
             $table->string('po_number')->nullable();

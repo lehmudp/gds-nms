@@ -6,6 +6,9 @@
 @endsection
 
 @section('content')
+<div class=navigation-button>
+	<button type="button" class="btn btn-outline-warning btn-sm"  onclick="window.location='/customer'">Manage</button>
+</div>
 <div class="side-menu">
 	<div class="menu-item unselectable-text" data-toggle="tooltip" data-placement="right" title="Carrier" v-on:click="showCarrierMenu()" v-bind:class="{ active: showCarriers }">
 		<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -13,7 +16,7 @@
 		</svg>
 	</div>
 	<div class="menu-item">
-		<img class="logo" src="{{ asset('img/gds.png') }}" onclick="window.location='/customer'"/>
+		<img class="logo" src="{{ asset('img/gds.png') }}" @click="dismissAll()"/>
 	</div>
 	<div class="menu-item unselectable-text"  data-toggle="tooltip" data-placement="right" title="NTT" v-on:click="showModal('NTT')" v-bind:class="{ active: wideContent }">
 		<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-broadcast" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

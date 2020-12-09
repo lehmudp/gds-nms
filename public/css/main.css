@@ -65,6 +65,16 @@ background: # url(/img/texture-noise.png) repeat;
 }
 
 /*Vertical Menu*/
+.navigation-button {
+	z-index: 55;
+	float: left;
+	position: fixed;
+	width: 6%;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
 
 .menu-item {
 	text-align: center;

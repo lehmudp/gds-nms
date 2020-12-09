@@ -20,6 +20,9 @@
 		    	</select>
 			</div>
 		</div>
+		<div class="cold-md-2">
+			<button type="button" class="btn btn-outline-primary" @click="addNew()">Add</button>
+		</div>
 	</div>
 	<div class="supplier-list">
 		<table class="table">
@@ -29,7 +32,7 @@
 				<th scope="col">Contact Name</th>
 				<th scope="col">Contact Title</th>
 				<th scope="col">Group</th>
-				<th scope="col">Button</th>
+				<th scope="col"></th>
 			</tr>
 			<tr v-for="item in selectedSupplier">
 				<td>@{{ item.supplier_name }}</td>

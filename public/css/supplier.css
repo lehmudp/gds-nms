@@ -5,3 +5,29 @@
 .supplier-list {
 	padding-top: 30px;
 }
+
+/*Edit & New Page*/
+.supplier-form h4{
+	margin-top: 50px;
+	text-align: center;
+}
+
+.update-message {
+	margin-top: 30px;
+	padding-top: 10px;	
+	text-align: center;
+}
+
+.needs-validation {
+	padding-top: 20px;
+}
+
+.form-item {
+	align-content: center;
+	justify-content: center;
+	padding-top: 10px;
+}
+
+.form-item label {
+	text-align: right;
+}

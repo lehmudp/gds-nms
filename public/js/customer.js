@@ -40,7 +40,10 @@ window.onload = function () {
                 });
 	    	},
 	    	edit(id) {
-	    		// window.location = '/supplier/edit/' + id; 
+	    		window.location = '/circuit/edit/' + id; 
+	    	},
+	    	addNew() {
+	    		window.location = '/circuit/new'; 
 	    	}
 	    },
 	    created() {

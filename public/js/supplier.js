@@ -11,7 +11,10 @@ window.onload = function () {
 	    		return str.replaceAll(">", " ");
 	    	},
 	    	edit(id) {
-	    		// window.location = '/supplier/edit/' + id; 
+	    		window.location = '/supplier/edit/' + id; 
+	    	},
+	    	addNew() {
+	    		window.location = '/supplier/new'; 
 	    	}
 	    },
 	    created() {
