@@ -39,11 +39,14 @@ window.onload = function () {
                    console.log(response);
                 });
 	    	},
-	    	edit(id) {
+	    	editItem(id) {
 	    		window.location = '/circuit/edit/' + id; 
 	    	},
-	    	addNew() {
+	    	addItem() {
 	    		window.location = '/circuit/new'; 
+	    	},
+	    	deleteItem() {
+	    		
 	    	}
 	    },
 	    created() {
@@ -51,8 +54,6 @@ window.onload = function () {
 	    		axios.get('api/circuit/all')
 	    		.then(response => {
                    this.circuitData = response.data.data;
-                   this.pagination.nextPage = response.data.next_page_url;
-                   this.pagination.previousPage = response.data.prev_page_url;
                 })
 				.catch(response => {
                    console.log(response);

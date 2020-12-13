@@ -9,7 +9,7 @@
 <div class="content-wrapper">
 	<div class="row create-new">
 		<div class="align-text input-group">
-			<button type="button" class="btn btn-outline-secondary" @click="addNew()">Add New</button>
+			<button type="button" class="btn btn-outline-secondary" @click="addItem()">Add New</button>
 			<div class="button-separator">Or</div>
 			<div>
 				<input type="file" ref="file" @change="handleFileUpload($event)" style="display: none">
@@ -31,6 +31,7 @@
 				<th scope="col">Service Name</th>				
 				<th scope="col">Site Description</th>
 				<th scope="col"></th>
+				<th scope="col"></th>
 			</tr>
 			<tr v-for="circuit in circuitData">
 				<td>@{{ circuit.ntt_cid }}</td>
@@ -40,7 +41,10 @@
 				<td>@{{ circuit.service_name }}</td>
 				<td>@{{ circuit.site_description }}</td>
 				<td>
-					<button type="button" class="btn btn-outline-dark" v-on:click="edit(circuit.id)">Edit</button>
+					<button type="button" class="btn btn-outline-info" v-on:click="editItem(circuit.id)">Edit</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-outline-danger" v-on:click="deleteItem(circuit.id)">Delete</button>
 				</td>
 			</tr>
 		</table>

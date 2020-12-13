@@ -34,7 +34,7 @@ window.onload = function () {
 	    methods: {
 	    	updateCircuit() {
 	    		this.showUpdateMessage = false;
-	    		validationFields = [this.circuit.ntt_cid, this.circuit.name, this.circuit.customer, this.circuit.service_name, this.circuit.carrier_name, this.circuit.province, this.circuit.site_description, this.circuit.al_type, this.circuit.cable_type, this.circuit.customer_contact, this.circuit.recipient_to]
+	    		validationFields = [this.circuit.ntt_cid, this.circuit.name, this.circuit.customer, this.circuit.service_name, this.circuit.carrier_name, this.circuit.province, this.circuit.site_description, this.circuit.al_type, this.circuit.cable_type, this.circuit.customer_contact]
 	    		for ( i=0; i<validationFields.length; i++) {
 					if (validationFields[i] == '' || validationFields[i] == null) {
     					this.validated = false;

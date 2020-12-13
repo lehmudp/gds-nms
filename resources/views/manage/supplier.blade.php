@@ -21,7 +21,7 @@
 			</div>
 		</div>
 		<div class="cold-md-2">
-			<button type="button" class="btn btn-outline-primary" @click="addNew()">Add</button>
+			<button type="button" class="btn btn-outline-primary" @click="addItem()">Add</button>
 		</div>
 	</div>
 	<div class="supplier-list">
@@ -33,6 +33,7 @@
 				<th scope="col">Contact Title</th>
 				<th scope="col">Group</th>
 				<th scope="col"></th>
+				<th scope="col"></th>
 			</tr>
 			<tr v-for="item in selectedSupplier">
 				<td>@{{ item.supplier_name }}</td>
@@ -41,7 +42,10 @@
 				<td>@{{ item.contact_title }}</td>
 				<td>@{{ item.group_value }}</td>
 				<td>
-					<button type="button" class="btn btn-outline-dark" v-on:click="edit(item.id)">Edit</button>
+					<button type="button" class="btn btn-outline-info" v-on:click="editItem(item.id)">Edit</button>
+				</td>
+				<td>
+					<button type="button" class="btn btn-outline-danger" v-on:click="deleteItem(item.id)">Delete</button>
 				</td>
 			</tr>
 		</table>

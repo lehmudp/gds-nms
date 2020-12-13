@@ -96,8 +96,7 @@
 	    <div class="form-group row form-item">
 	    	<label for="colFormLabel" class="col-sm-2 col-form-label">Email</label>
 		    <div class="col-sm-4">
-		    	<textarea type="text" row="3" class="form-control" id="colFormLabel" v-model="circuit.recipient_to" aria-describedby="helpBlock"></textarea>
-		    	<small v-if="validateField(circuit.recipient_to)" id="helpBlock" class="form-text text-danger"> This field is required</small>
+		    	<textarea type="text" row="3" class="form-control" id="colFormLabel" v-model="circuit.recipient_to"></textarea>
 		    </div>
 	    </div>
 	    <div class="form-group row form-item">
