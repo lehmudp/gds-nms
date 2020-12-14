@@ -1,6 +1,17 @@
-.create-new {
-	padding-top: 40px;
-	padding-bottom: 20px;
+.customer-tools {
+	padding: 40px 0 10px 30px;
+}
+
+.customer-tools button {
+	margin-right: 15px ;
+}
+
+.sub-tools {
+	padding: 10px 0 20px 30px;
+}
+
+.sub-tools .custom-select {
+	width: 29%
 }
 
 .align-text {

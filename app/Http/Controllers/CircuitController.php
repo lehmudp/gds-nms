@@ -31,16 +31,16 @@ class CircuitController extends Controller
 	}
 
 	// Get all circuit
-	public function showAll()
+	public function getCustomerGrouped()
 	{
-		$circuits = DB::table('circuits')->orderBy('customer', 'ASC')->simplePaginate(15);
+		$circuits = DB::table('circuits')->get()->groupBy('customer')->sortBy('customer');
 		return $circuits;
 	}
 
 	// Get all current customer
-	public function showAllCustomers()
+	public function getCustomers()
 	{
-		$customers = DB::table('circuits')->select('customer')->distinct()->get();
+		$customers = DB::table('circuits')->select('customer')->distinct()->orderBy('customer', 'ASC')->get();
 		return $customers;
 	}
 

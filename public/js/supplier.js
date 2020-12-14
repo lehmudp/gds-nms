@@ -4,7 +4,11 @@ window.onload = function () {
 		data: {
 			currentRoute: '',
 		    suppliers: {},
-		    selectedSupplier: {},
+		    selectedSupplier: [],
+		    itemForDelete: {
+		    	id: '',
+		    	index: ''
+		    }
 	    },
 	    methods: {
 	    	initializePage() {
@@ -25,15 +29,25 @@ window.onload = function () {
 	    	addItem() {
 	    		window.location = '/supplier/new'; 
 	    	},
-	    	deleteItem() {
-    //             axios.get('api/supplier/delete')
-	   //  		.then(response => {
-    //                this.suppliers = response.data;
-    //                console.log(this.suppliers)
-    //             })
-				// .catch(response => {
-    //                console.log(response);
-    //             });
+	    	deleteItem(id, index) {
+	    		this.itemForDelete.id = id;
+	    		this.itemForDelete.index = index;
+	    		$('#deleteModal').modal('show');
+	    	},
+	    	cancelDelete() {
+	    		this.itemForDelete.id = '';
+	    		this.itemForDelete.index = '';
+	    		$('#deleteModal').modal('hide');
+	    	},
+	    	confirmDelete() {
+                axios.delete('api/supplier/delete/' + this.itemForDelete.id)
+	    		.then(response => {
+                   this.selectedSupplier.splice(this.itemForDelete.index, 1);
+                   $('#deleteModal').modal('hide');
+                })
+				.catch(response => {
+                   console.log(response);
+                });
 	    	}
 	    },
 	    created() {

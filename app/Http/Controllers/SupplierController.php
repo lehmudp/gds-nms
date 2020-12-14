@@ -27,7 +27,7 @@ class SupplierController extends Controller
         return $result;
     }
 
-    public function showAll()
+    public function getSupplierByGroup()
     {
         $result = DB::table('suppliers')->get()->groupBy('supplier_name');
         return $result;
@@ -58,5 +58,10 @@ class SupplierController extends Controller
                 'note' => $data['note'],
             ]
         );
+    }
+
+    public function delete($id)
+    {
+        DB::table('suppliers')->where('id', $id)->delete();
     }
 }

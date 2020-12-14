@@ -3,16 +3,16 @@ window.onload = function () {
 		el: '#app',
 		data: {
 			currentRoute: '',
+			isFilter: true,
+			customerList: [],
+			selectedCustomer: {},
+			deleteArray: [],
 			fileStatus: 'Select File',
 	  		file: '',
 	  		hasFile: false,
 	  		showDialogMessage: false,
 	  		uploadDialog: '',
 	  		circuitData: [],
-	  		pagination: {
-	  			nextPage: '',
-	  			previousPage: ''
-	  		}
 	    },
 	    methods: {
 	    	handleFileUpload: function(event) {
@@ -49,11 +49,17 @@ window.onload = function () {
 	    		
 	    	}
 	    },
+	    computed: {
+	    	hasItemsForDelete() {
+	    		return this.deleteArray.length > 0;
+	    	}
+	    },
 	    created() {
 	    		this.currentRoute = window.location.pathname;
-	    		axios.get('api/circuit/all')
+	    		axios.get('api/circuit/group')
 	    		.then(response => {
-                   this.circuitData = response.data.data;
+                   this.customerList = response.data;
+                   console.log(this.customerList);
                 })
 				.catch(response => {
                    console.log(response);

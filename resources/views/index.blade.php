@@ -88,12 +88,8 @@
 		    	<label class="input-group-text" for="company-name">Company Name</label>
 		  	</div>
 		  	<select class="custom-select circuit-select" id="company-name" v-model="formData.companyName" @change="companySelected()">
-		    <option 
-		    v-for="item in customerList"
-		    v-bind:value="item.customer">
-		    @{{item.customer}}
-		    </option>
-		  </select>
+			    <option v-for="item in customerList" v-bind:value="item.customer">@{{item.customer}}</option>
+		    </select>
 		</div>
 		<div class="circuit-input col-md-6">
 		  	<div class="circuit-input-prepend">
