@@ -48,7 +48,8 @@ Route::post('/import', [CircuitController::class, 'import']);
 Route::get('api/circuit/group', [CircuitController::class, 'getCustomerGrouped']);
 Route::get('api/circuit/{id}', [CircuitController::class, 'getCircuitById']);
 Route::post('api/circuit/update', [CircuitController::class, 'updateOrCreateCircuit']);
-Route::get('api/circuit/company/{name}', [CircuitController::class, 'getCircuitByCompany']);
+Route::get('api/circuit/customer/{name}', [CircuitController::class, 'getCircuitByCustomer']);
+Route::delete('api/circuit/delete/{id}', [CircuitController::class, 'delete']);
 
 //Customer
 Route::get('api/customer/all', [CircuitController::class, 'getCustomers']);

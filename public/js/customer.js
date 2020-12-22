@@ -6,13 +6,16 @@ window.onload = function () {
 			isFilter: true,
 			customerList: [],
 			selectedCustomer: {},
-			deleteArray: [],
 			fileStatus: 'Select File',
 	  		file: '',
 	  		hasFile: false,
 	  		showDialogMessage: false,
 	  		uploadDialog: '',
 	  		circuitData: [],
+		    itemForDelete: {
+		    	id: '',
+		    	index: ''
+		    }
 	    },
 	    methods: {
 	    	handleFileUpload: function(event) {
@@ -45,13 +48,25 @@ window.onload = function () {
 	    	addItem() {
 	    		window.location = '/circuit/new'; 
 	    	},
-	    	deleteItem() {
-	    		
-	    	}
-	    },
-	    computed: {
-	    	hasItemsForDelete() {
-	    		return this.deleteArray.length > 0;
+	    	deleteItem(id, index) {
+	    		this.itemForDelete.id = id;
+	    		this.itemForDelete.index = index;
+	    		$('#deleteModal').modal('show');
+	    	},
+	    	cancelDelete() {
+	    		this.itemForDelete.id = '';
+	    		this.itemForDelete.index = '';
+	    		$('#deleteModal').modal('hide');
+	    	},
+	    	confirmDelete() {
+                axios.delete('api/circuit/delete/' + this.itemForDelete.id)
+	    		.then(response => {
+                   this.selectedCustomer.splice(this.itemForDelete.index, 1);
+                   $('#deleteModal').modal('hide');
+                })
+				.catch(response => {
+                   console.log(response);
+                });
 	    	}
 	    },
 	    created() {

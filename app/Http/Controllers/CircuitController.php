@@ -45,7 +45,7 @@ class CircuitController extends Controller
 	}
 
 	// Get all circuit from the same company
-	public function getCircuitByCompany($customer)
+	public function getCircuitByCustomer($customer)
 	{
 		$circuits = DB::table('circuits')->where('customer', $customer)->get();
 		return $circuits;
@@ -88,4 +88,9 @@ class CircuitController extends Controller
 			]
 		);
 	}
+
+	public function delete($id)
+    {
+        DB::table('circuits')->where('id', $id)->delete();
+    }
 }
