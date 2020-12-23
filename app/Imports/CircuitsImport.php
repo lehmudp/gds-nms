@@ -30,12 +30,15 @@ class CircuitsImport implements ToCollection, WithMultipleSheets, WithHeadingRow
 		     		break;
 		     	}
 	        	else if($row->filter()->isNotEmpty()) {
+			     	if ($row['circuit_name'] == null || $row['circuit_name'] == '') {
+			     		$row['circuit_name'] = "Circuit " . $row['ntts_cid'];
+			     	}
 		     		DB::table('circuits')->updateOrInsert(
 		     			[
-	        				'name'  => $row['circuit_name'],
+	        				'ntt_cid'  => $row['ntts_cid']
 		     			], 
 		     			[
-	        				'ntt_cid'  => $row['ntts_cid'],
+	        				'name'  => $row['circuit_name'],
 	        				'customer'  => $row['customer'],
 	        				'service_name'  => $row['service_name'],
 	        				'carrier_name'  => $row['carrier_name'],
