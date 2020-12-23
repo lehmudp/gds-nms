@@ -89,6 +89,10 @@ background: # url(/img/texture-noise.png) repeat;
     color: #0261b3;
 }
 
+.menu-title {
+	font-size: 0.75rem;
+}
+
 .menu-item.active {
 	color: #f9d006;
 }

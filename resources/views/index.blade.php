@@ -11,18 +11,20 @@
 </div>
 <div class="side-menu">
 	<div class="menu-item unselectable-text" data-toggle="tooltip" data-placement="right" title="Carrier" v-on:click="showCarrierMenu()" v-bind:class="{ active: showCarriers }">
-		<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<!-- <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		    <path fill-rule="evenodd" d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z"/>
-		</svg>
+		</svg> -->
+		<div class="menu-title">Carrier</div>
 	</div>
 	<div class="menu-item">
 		<img class="logo" src="{{ asset('img/gds.png') }}" @click="dismissAll()"/>
 	</div>
 	<div class="menu-item unselectable-text"  data-toggle="tooltip" data-placement="right" title="NTT" v-on:click="showModal('NTT')" v-bind:class="{ active: wideContent }">
-		<svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-broadcast" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		<!-- <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-broadcast" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
 		    <path fill-rule="evenodd" d="M3.05 3.05a7 7 0 0 0 0 9.9.5.5 0 0 1-.707.707 8 8 0 0 1 0-11.314.5.5 0 0 1 .707.707zm2.122 2.122a4 4 0 0 0 0 5.656.5.5 0 0 1-.708.708 5 5 0 0 1 0-7.072.5.5 0 0 1 .708.708zm5.656-.708a.5.5 0 0 1 .708 0 5 5 0 0 1 0 7.072.5.5 0 1 1-.708-.708 4 4 0 0 0 0-5.656.5.5 0 0 1 0-.708zm2.122-2.12a.5.5 0 0 1 .707 0 8 8 0 0 1 0 11.313.5.5 0 0 1-.707-.707 7 7 0 0 0 0-9.9.5.5 0 0 1 0-.707z"/>
 		    <path d="M10 8a2 2 0 1 1-4 0 2 2 0 0 1 4 0z"/>
-		</svg>
+		</svg> -->
+		<div class="menu-title">NTT</div>
 	</div>
 </div>
 <transition name="slide">
@@ -117,20 +119,26 @@
 			<form>
 				<div class="form-group">
 				  	<div class="col-md-4 offset-md-4">
-				  		<label class="float-left font-weight-light unselectable-text" for="form-number">Company</label>
+				  		<label class="float-left font-weight-light unselectable-text" for="form-number">Customer</label>
 				    	<input type="text" v-model="formData.customerName" class="form-control" id="form-number" readonly>
 				  	</div>
 				</div>
 				<div class="form-group">
 				  	<div class="col-md-4 offset-md-4">
-					    <label class="float-left font-weight-light unselectable-text" for="form-ticket">Trouble Ticket Number</label>
-					    <input type="text" v-model="formData.ticketNumber" class="form-control" id="form-ticket">
+				  		<label class="float-left font-weight-light unselectable-text" for="form-number">Site</label>
+				    	<input type="text" v-model="formData.circuitSite" class="form-control" id="form-province" readonly>
 				  	</div>
 				</div>
 				<div class="form-group">
 				  	<div class="col-md-4 offset-md-4">
 					    <label class="float-left font-weight-light unselectable-text" for="form-circuit">Affected Circuit</label>
 					    <input type="text" v-model="formData.circuitName" class="form-control" id="form-circuit" readonly>
+				  	</div>
+				</div>
+				<div class="form-group">
+				  	<div class="col-md-4 offset-md-4">
+					    <label class="float-left font-weight-light unselectable-text" for="form-ticket">Trouble Ticket Number</label>
+					    <input type="text" v-model="formData.ticketNumber" class="form-control" id="form-ticket">
 				  	</div>
 				</div>
 			    <div class="form-group">

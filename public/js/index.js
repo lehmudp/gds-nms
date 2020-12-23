@@ -25,7 +25,7 @@ window.onload = function () {
 		    	status: 'Down',
 		    	actionText: 'Now Investigating',
 		    	reasonText: 'Under investigation',
-		    	circuitSite: 'Default',
+		    	circuitSite: '',
 		    	startTime: '',
 		    	endTime: '',
 	    	},
@@ -120,7 +120,7 @@ window.onload = function () {
 		    getRecipient: function () {
 				email = "mailto:" + this.selectedCircuit['recipient_to'] + "?";
 		  		if (this.selectedCircuit['recipient_cc'] !== '' && this.selectedCircuit['recipient_cc'] !== null) {
-			  		email = email + "cc=" + this.selectedCircuit['recipient_cc'] + "&";
+			  		email = email + "cc=dnw.support@external.ntt.com.vn;" + this.selectedCircuit['recipient_cc'] + "&";
 		  		}
 		  		if (this.selectedCircuit['recipient_bcc'] !== '' && this.selectedCircuit['recipient_bcc'] !== null) {
 		  			email = email + "bcc=" + this.selectedCircuit['recipient_bcc'] + "&";
