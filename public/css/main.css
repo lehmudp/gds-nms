@@ -55,7 +55,7 @@ background: # url(/img/texture-noise.png) repeat;
 }
 
 .logo {
-	max-width:70%; 
+	max-width:85%; 
 	position: absolute;
     margin: auto;
     top: 0;
@@ -90,7 +90,7 @@ background: # url(/img/texture-noise.png) repeat;
 }
 
 .menu-title {
-	font-size: 0.75rem;
+	font-size: 1rem;
 }
 
 .menu-item.active {
