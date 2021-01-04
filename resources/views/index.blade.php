@@ -6,9 +6,9 @@
 @endsection
 
 @section('content')
-<div class=navigation-button>
+<!-- <div class=navigation-button>
 	<button type="button" class="btn btn-outline-warning btn-sm"  onclick="window.location='/customer'">Manage</button>
-</div>
+</div> -->
 <div class="side-menu">
 	<div class="menu-item unselectable-text" data-toggle="tooltip" data-placement="right" title="Carrier" v-on:click="showCarrierMenu()" v-bind:class="{ active: showCarriers }">
 		<!-- <svg width="1.7em" height="1.7em" viewBox="0 0 16 16" class="bi bi-people-fill" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
@@ -238,7 +238,7 @@
     		</tr>
     		<tr v-if="selectedCircuit.note !== null">
     			<th scope="row">Note</th>
-    			<td>@{{selectedCircuit.note}}</td>
+    			<td style="color: #ff3333">@{{selectedCircuit.note}}</td>
     		</tr>
         </table>
       </div>

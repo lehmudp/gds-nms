@@ -86,6 +86,9 @@ window.onload = function () {
 		  	},
 		  	circuitSelected: function() {
 		  		this.hasCircuitInfo = true;
+		  		this.formData.ticketNumber = '';
+		  		this.formData.startTime = '';
+		  		this.formData.endTime = '';
 		  		this.formData.circuitName = this.selectedCircuit.carrier_name + ' - ' + this.selectedCircuit.service_name;
 		  		this.formData.circuitSite = this.selectedCircuit.province;
 		  	},
