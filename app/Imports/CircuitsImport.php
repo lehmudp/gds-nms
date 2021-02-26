@@ -25,6 +25,7 @@ class CircuitsImport implements ToCollection, WithMultipleSheets, WithHeadingRow
     {
     	DB::beginTransaction();
 		try {
+			DB::table('circuits')->truncate();
 		    foreach ($rows as $row) {
 		     	if ($row['ntts_cid'] == "COUNT") {
 		     		break;
